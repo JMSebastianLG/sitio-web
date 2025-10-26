@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página</title>
+</head>
+<body>
+    <h1>Página Actividad 9</h1>
+
+    <h2>Login</h2>
+    <label>Usuario:</label>
+    <input type="text" id="usuario"><br>
+    <label>Contraseña:</label>
+    <input type="password" id="clave"><br>
+    <button onclick="login()">Ingresar</button>
+
+    <hr>
+
+    <div id="contenido" style="display:none;">
+        <h2>Calculadora de ejemplo</h2>
+        <label>Selecciona operación:</label><br>
+        <input type="radio" name="op" value="suma"> Suma<br>
+        <input type="radio" name="op" value="resta"> Resta<br>
+        <input type="radio" name="op" value="multi"> Multiplicación<br>
+        <input type="radio" name="op" value="div"> División<br><br>
+
+        <label>Valor 1:</label>
+        <input type="number" id="val1"><br>
+        <label>Valor 2:</label>
+        <input type="number" id="val2"><br>
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultado"></p>
+
+        <hr>
+
+        <h3>Selecciona tus gustos</h3>
+        <input type="checkbox" id="musica"> Me gusta la música<br>
+        <input type="checkbox" id="comida"> Me gusta la comida<br>
+        <button onclick="mostrarGustos()">Mostrar gustos</button>
+        <p id="gustos"></p>
+
+        <hr>
+        <h3>Imagen y Video</h3>
+        <img src="https://via.placeholder.com/200" alt="imagen random">
+        <br><br>
+        <video width="320" height="240" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
