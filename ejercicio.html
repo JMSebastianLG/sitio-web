@@ -2,55 +2,92 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 30px;
+            max-width: 450px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Página Actividad 9</h1>
+    <div class="card">
+        <h2>Calculadora de IMC</h2>
 
-    <h2>Login</h2>
-    <label>Usuario:</label>
-    <input type="text" id="usuario"><br>
-    <label>Contraseña:</label>
-    <input type="password" id="clave"><br>
-    <button onclick="login()">Ingresar</button>
+        <label for="peso">Peso (kg)</label>
+        <input type="number" id="peso" placeholder="Ejemplo: 70">
 
-    <hr>
+        <label for="altura">Altura (m)</label>
+        <input type="number" step="0.01" id="altura" placeholder="Ejemplo: 1.75">
 
-    <div id="contenido" style="display:none;">
-        <h2>Calculadora de ejemplo</h2>
-        <label>Selecciona operación:</label><br>
-        <input type="radio" name="op" value="suma"> Suma<br>
-        <input type="radio" name="op" value="resta"> Resta<br>
-        <input type="radio" name="op" value="multi"> Multiplicación<br>
-        <input type="radio" name="op" value="div"> División<br><br>
+        <button onclick="calcularIMC()">Calcular IMC</button>
 
-        <label>Valor 1:</label>
-        <input type="number" id="val1"><br>
-        <label>Valor 2:</label>
-        <input type="number" id="val2"><br>
-        <button onclick="calcular()">Calcular</button>
-        <p id="resultado"></p>
-
-        <hr>
-
-        <h3>Selecciona tus gustos</h3>
-        <input type="checkbox" id="musica"> Me gusta la música<br>
-        <input type="checkbox" id="comida"> Me gusta la comida<br>
-        <button onclick="mostrarGustos()">Mostrar gustos</button>
-        <p id="gustos"></p>
-
-        <hr>
-        <h3>Imagen y Video</h3>
-        <img width="320" height="240" src="https://www.tooltyp.com/wp-content/uploads/2014/10/1900x920-8-beneficios-de-usar-imagenes-en-nuestros-sitios-web.jpg" alt="imagen1">
-        <br><br>
-        <img width="320" height="240" src="https://cdn.pixabay.com/photo/2023/03/16/08/42/camping-7856198_640.jpg" alt="imagen2">
-        <br><br>
-        <video width="320" height="240" controls>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+        <div id="resultado"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function calcularIMC() {
+            const peso = parseFloat(document.getElementById("peso").value);
+            const altura = parseFloat(document.getElementById("altura").value);
+            const resultado = document.getElementById("resultado");
+
+            if (!peso || !altura || altura <= 0) {
+                resultado.innerHTML = "Por favor ingrese valores válidos.";
+                return;
+            }
+
+            const imc = (peso / (altura * altura)).toFixed(2);
+            let interpretacion = "";
+
+            if (imc < 18.5) {
+                interpretacion = "Bajo peso";
+            } else if (imc < 25) {
+                interpretacion = "Peso normal";
+            } else if (imc < 30) {
+                interpretacion = "Sobrepeso";
+            } else {
+                interpretacion = "Obesidad";
+            }
+
+            resultado.innerHTML = `IMC: <strong>${imc}</strong><br>Interpretación: <strong>${interpretacion}</strong>`;
+        }
+    </script>
+
 </body>
 </html>
-
